@@ -28,7 +28,21 @@ SECRET_KEY = config('DJANGO_SECRET_KEY', default='django-insecure-tkj%i^k*ffacon
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
+# ALLOWED_HOSTS - support Railway domains automatically
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=Csv())
+
+# Add Railway domains if RAILWAY_ENVIRONMENT is set
+if os.environ.get('RAILWAY_PUBLIC_DOMAIN'):
+    ALLOWED_HOSTS.append(os.environ.get('RAILWAY_PUBLIC_DOMAIN'))
+if os.environ.get('RAILWAY_STATIC_URL'):
+    ALLOWED_HOSTS.append(os.environ.get('RAILWAY_STATIC_URL').replace('https://', '').replace('http://', ''))
+
+# Always allow Railway domains
+ALLOWED_HOSTS.extend([
+    'web-production-3e984.up.railway.app',
+    'ritikgaire.com.np',
+    'www.ritikgaire.com.np'
+])
 
 
 # Application definition
