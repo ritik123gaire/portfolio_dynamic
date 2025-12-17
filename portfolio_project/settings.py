@@ -44,6 +44,14 @@ ALLOWED_HOSTS.extend([
     'www.ritikgaire.com.np'
 ])
 
+# Railway proxy configuration - MUST be before security settings
+# Railway terminates SSL at the proxy, so we trust the X-Forwarded-Proto header
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+
+# Never redirect to HTTPS - Railway handles this at proxy level
+SECURE_SSL_REDIRECT = False
+
 # CSRF trusted origins (must include scheme)
 # Allows posting from your domain and Railway subdomains
 CSRF_TRUSTED_ORIGINS = config(
@@ -159,20 +167,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Security settings for production
 if not DEBUG:
-    # Railway uses a proxy that terminates SSL
-    # Trust X-Forwarded-Proto header from Railway's proxy
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-    
-    # Don't force redirect since Railway handles SSL at proxy level
-    SECURE_SSL_REDIRECT = False
-    
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     X_FRAME_OPTIONS = 'DENY'
-    
-    # Reduce HSTS for now during testing
-    SECURE_HSTS_SECONDS = 0  # Increase to 31536000 after confirming everything works
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = False
-    SECURE_HSTS_PRELOAD = False
