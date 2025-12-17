@@ -44,6 +44,14 @@ ALLOWED_HOSTS.extend([
     'www.ritikgaire.com.np'
 ])
 
+# CSRF trusted origins (must include scheme)
+# Allows posting from your domain and Railway subdomains
+CSRF_TRUSTED_ORIGINS = config(
+    'CSRF_TRUSTED_ORIGINS',
+    default='https://ritikgaire.com.np,https://www.ritikgaire.com.np,https://*.railway.app,https://*.up.railway.app',
+    cast=Csv()
+)
+
 
 # Application definition
 
