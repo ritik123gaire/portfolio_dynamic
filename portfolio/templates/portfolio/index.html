@@ -377,10 +377,20 @@
 						{% for project in projects %}
 						<!-- gallery item -->
 						<div class="col-md-4 item-img {{ project.category }}">
+							{% if project.image %}
 							<img src="{{ project.image.url }}" alt="{{ project.title }}" width="720" height="540">
+							{% else %}
+							<img src="{% static 'img/portfolio/01.jpg' %}" alt="{{ project.title }}" width="720" height="540">
+							{% endif %}
 							<div class="item-img-overlay">
 								<div class="v-middle">
+									{% if project.image %}
 									<a href="{{ project.image.url }}"><span class="icon"></span></a>
+									{% elif project.github_url %}
+									<a href="{{ project.github_url }}"><span class="icon"></span></a>
+									{% else %}
+									<a href="#"><span class="icon"></span></a>
+									{% endif %}
 								</div>
 								<div class="overlay-info text-center">
 									<p>{{ project.title }}</p>
