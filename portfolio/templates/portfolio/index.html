@@ -1,0 +1,564 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="en"> 
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<!-- Mobile Specific Meta -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- Always force latest IE rendering engine -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<!-- Title -->
+		<title>{% if profile %}{{ profile.name }}{% else %}My Portfolio{% endif %}</title>
+
+		<!-- Google fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700" rel="stylesheet">
+
+		<!-- Font awesome Core CSS -->
+		<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+		<link rel="stylesheet" href="{% static 'css/et-line.css' %}">
+
+		<!-- bootstrap css -->
+		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+		<!-- owl carousel CSS -->
+		<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+		<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+
+		<!-- magnific-popup CSS -->
+		<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+
+		<!-- main style CSS -->
+		<link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+		<!-- Custom style CSS -->
+		<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+		<!-- responsive CSS -->
+		<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+
+		<!--[if lt IE 9]-->
+		<script src="{% static 'js/html5shiv.min.js' %}"></script>
+		<!--[endif]-->
+	</head>
+	<body>
+
+		<!-- ====== Preloader ======  -->
+	    <div class="loading">
+			<div class="spinner">
+			  <div class="rect1"></div>
+			  <div class="rect2"></div>
+			  <div class="rect3"></div>
+			  <div class="rect4"></div>
+			  <div class="rect5"></div>
+			</div>
+		</div>
+		<!-- ======End Preloader ======  -->
+
+		<!-- ====== Navgition ======  -->
+		<nav class="navbar land-nav navbar-default">
+		  <div class="container">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <!-- logo -->
+		      <a class="navbar-brand" href="#"></a>
+		    </div>
+
+		    <!-- Collect the nav links, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      
+			  <!-- links -->
+		      <ul class="nav navbar-nav navbar-right">
+		        <li><a href="#home" class="active">Home</a></li>
+		        <li><a href="#about">About</a></li>
+		        <li><a href="#services">Skills</a></li>
+		        <li><a href="#clients">Blogs</a></li>
+		        <li><a href="#portfolio">Projects</a></li>
+		        <li><a href="#contact">Contact</a></li>
+		      </ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container -->
+		</nav>
+		<!-- ====== End Navgition ======  -->
+
+		<!-- ====== Header ======  -->
+		<header id="home" class="particle" data-stellar-background-ratio="0.5">
+			<div id="particles-js"></div>
+			<div class="header-overlay">
+				<!-- header content -->
+				<div class="caption v-middle">
+					<h1>{% if profile %}{{ profile.tagline }}{% else %}I LOVE TO CODE{% endif %}</h1>
+					<div class="type">
+						<span>I AM</span><h2></h2>
+					</div>
+				</div>
+
+				<div class="button-scroll" data-scrollTo="about"><span></span></div>
+			</div>
+		</header>
+		<!-- ====== End Header ======  -->
+
+		<!-- ====== Hero ======  -->
+		<section id="about" class="hero section-padding">
+			<div class="container mb-80">
+				<div class="row">
+
+					<!-- hero image -->
+					<div class="col-sm-4">
+						<div class="hero-img">
+							{% if profile and profile.profile_image %}
+								<img src="{{ profile.profile_image.url }}" alt="{{ profile.name }}">
+							{% else %}
+								<img src="{% static 'img/hero.jpg' %}" alt="image">
+							{% endif %}
+						</div>
+					</div>
+
+					<!-- hero item -->
+					<div class="col-sm-7 col-sm-offset-1">
+						<div class="hero-item">
+							<div class="tit">
+								<h4>About Me</h4>
+							</div>
+							<div class="content mb-20">
+								<p class="mb-20">
+									{% if profile %}
+										{{ profile.about_text|linebreaks }}
+									{% else %}
+										As a Graduate Computer Science student, I am passionate about data analysis and web development, and I am currently working on a project using Python Libraries.
+									{% endif %}
+								</p>
+							</div>
+
+							<!-- social icon -->
+							<div class="social-icon">
+								{% if profile %}
+									{% if profile.facebook_url %}
+									<a href="{{ profile.facebook_url }}">
+										<span><i class="fa fa-facebook" aria-hidden="true"></i></span>
+									</a>
+									{% endif %}
+									{% if profile.twitter_url %}
+									<a href="{{ profile.twitter_url }}">
+										<span><i class="fa fa-twitter" aria-hidden="true"></i></span>
+									</a>
+									{% endif %}
+									{% if profile.youtube_url %}
+									<a href="{{ profile.youtube_url }}">
+										<span><i class="fa fa-youtube" aria-hidden="true"></i></span>
+									</a>
+									{% endif %}
+									{% if profile.linkedin_url %}
+									<a href="{{ profile.linkedin_url }}">
+										<span><i class="fa fa-linkedin" aria-hidden="true"></i></span>
+									</a>
+									{% endif %}
+									{% if profile.github_url %}
+									<a href="{{ profile.github_url }}">
+										<span><i class="fa fa-github" aria-hidden="true"></i></span>
+									</a>
+									{% endif %}
+								{% endif %}
+							</div>
+						</div>
+					</div>
+					<div class="clear-fix"></div>
+				</div>
+			</div>
+
+			<!-- skills -->
+			<div class="skills">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3 col-sm-4">
+							<div class="skill-items">
+								<div class="skill-title">
+									<span class="icon-pencil"></span><br>
+									<h5 class="tit">Education</h5>
+								</div>
+
+								{% for edu in education_list %}
+								<div class="item-info mb-50">
+									<h6>{{ edu.institution }}</h6>
+									<p>{{ edu.degree }}</p>
+								</div>
+								{% empty %}
+								<div class="item-info mb-50">
+									<h6>Your University</h6>
+									<p>Your Degree</p>
+								</div>
+								{% endfor %}
+
+							</div>
+						</div>
+
+						<div class="col-md-3 col-sm-4">
+							<div class="skill-items">
+								<div class="skill-title">
+									<span class="icon-briefcase"></span><br>
+									<h5 class="tit">Experience</h5>
+								</div>
+
+								{% for exp in experience_list %}
+								<div class="item-info mb-50">
+									<h6>{{ exp.company }}</h6>
+									<p>{{ exp.position }}</p>
+								</div>
+								{% empty %}
+								<div class="item-info mb-50">
+									<h6>Your Company</h6>
+									<p>Your Position</p>
+								</div>
+								{% endfor %}
+
+							</div>
+						</div>
+
+						<!-- skills progress -->
+						<div class="col-md-6 col-sm-4">
+							<div class="skill-items">
+								<div class="skill-title">
+									<span class="icon-tools"></span><br>
+									<h5 class="tit">My Skills</h5>
+								</div>
+
+								{% for category, skill_list in skills.items %}
+								<div class="item-info mb-30">
+									<h6>{{ category }}</h6>
+									<p>{{ skill_list|join:", " }}</p>
+								</div>
+								{% empty %}
+								<div class="item-info mb-30">
+									<h6>Add Your Skills</h6>
+									<p>Use the admin panel to add skills</p>
+								</div>
+								{% endfor %}
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- ====== End Hero ======  -->
+
+		<!-- ====== Numbers ======  -->
+		<div id="numbers" class="numbers text-center mb-80">
+			<div class="container">
+				<div class="row">
+
+					{% for stat in statistics %}
+					<!-- num items -->
+					<div class="col-sm-3">
+						<div class="num-items">
+							<span class="{{ stat.icon_class }}"></span>
+							<p class="counter">{{ stat.value }}</p>
+							<h6>{{ stat.label }}</h6>
+						</div>
+					</div>
+					{% endfor %}
+
+				</div>
+			</div>
+		</div>
+		<!-- ====== End Numbers ======  -->
+
+		<!--====== Services ======-->
+		<section id="services" class="services text-center section-padding">
+			<div class="container mb-80">
+
+				<!-- section header -->
+				<div class="text-center mb-50">
+					<h4 class="tit tit-center">WHAT CAN I DO</h4>
+				</div>
+				<div class="row">
+
+					<!-- services items -->
+					<div class="services-items">
+						{% for service in services %}
+							{% if forloop.counter0|divisibleby:3 and not forloop.first %}
+					</div>
+					<div class="services-items">
+							{% endif %}
+						<div class="col-md-4 {% if forloop.counter0|divisibleby:3 != 1 %}bord{% endif %}">
+							<div class="item">
+								<span class="{{ service.icon_class }}"></span>
+								<h5>{{ service.title }}</h5>
+								{% if service.description %}
+								<p>{{ service.description }}</p>
+								{% endif %}
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+
+				</div>
+			</div>
+		</section>
+		<!--====== End Services ======-->
+
+		<!--====== Clients ======-->
+		<section id="clients" class="clients mb-50">
+			<div class="container">
+				<div class="row">
+
+					<!-- clients carousel -->
+					<div class="col-md-10 col-md-offset-1">
+						<div class="client-say text-center">
+							<div class="owl-carousel owl-theme">
+
+								{% for blog in blog_posts %}
+								<!-- client item -->
+								<div class="client-item text-center">
+										
+									<span class="icon-quote mb-50"></span><br>
+
+									<h5 class="mb-30">{{ blog.title }}</h5>
+
+									<p class="mb-20">{{ blog.excerpt }}</p>
+
+									<h6>___ {{ blog.author }}{% if blog.company %}, {{ blog.company }}{% endif %} ___</h6>
+								</div>
+								{% empty %}
+								<!-- client item -->
+								<div class="client-item text-center">
+										
+									<span class="icon-quote mb-50"></span><br>
+
+									<h5 class="mb-30">Add Blog Posts</h5>
+
+									<p class="mb-20">Use the admin panel to add blog posts that will appear here.</p>
+
+									<h6>___ Admin ___</h6>
+								</div>
+								{% endfor %}
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--====== End Clients ======-->
+
+		<!--====== Portfolio ======-->
+		<section id="portfolio" class="portfolio section-padding">
+			<div class="container">
+				<!-- section header -->
+				<div class="section-head text-center mb-50">
+					<h5 class="tit tit-center">SOME OF MY WORK</h5>
+				</div>
+
+				<div class="row">
+
+					<!-- filter links -->
+					<div class="filtering text-center mb-50">
+						<span data-filter='*' class="active">All</span>
+						<span data-filter='.ecommerce'>E-Commerce</span>
+						<span data-filter='.blockchain'>Blockchain</span>
+						<span data-filter='.data_science'>Data Science</span>
+						<span data-filter='.ui'>UI</span>
+					</div>
+
+					<!-- gallery -->
+					<div class="gallery text-center">
+
+						{% for project in projects %}
+						<!-- gallery item -->
+						<div class="col-md-4 item-img {{ project.category }}">
+							<img src="{{ project.image.url }}" alt="{{ project.title }}" width="720" height="540">
+							<div class="item-img-overlay">
+								<div class="v-middle">
+									<a href="{{ project.image.url }}"><span class="icon"></span></a>
+								</div>
+								<div class="overlay-info text-center">
+									<p>{{ project.title }}</p>
+								</div>
+							</div>
+						</div>
+						{% empty %}
+						<!-- gallery item -->
+						<div class="col-md-4 item-img">
+							<img src="{% static 'img/portfolio/01.jpg' %}" alt="Sample Project" width="720" height="540">
+							<div class="item-img-overlay">
+								<div class="v-middle">
+									<a href="{% static 'img/portfolio/01.jpg' %}"><span class="icon"></span></a>
+								</div>
+								<div class="overlay-info text-center">
+									<p>Add Your Projects</p>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--====== End Portfolio ======-->
+
+		<!--====== Hire ======-->
+		<section class="hire section-padding text-center">
+			<div class="container">
+				<h3>Start Work With Me</h3>
+				<button>Hire Me</button>
+			</div>
+		</section>
+		<!--====== End Hire ======-->
+
+		<!--====== Contact ======-->
+		<section id="contact" class="contact section-padding">
+			<div class="contact-overlay"></div>
+
+			<!-- section header -->
+			<div class="text-center mb-50">
+				<h4 class="tit tit-center">GET IN TOUCH</h4>
+			</div>
+
+			<div class="contact-item container">
+				<div class="row">
+
+					<!-- contact form -->
+					<div class="col-md-8 col-md-offset-2">
+						{% if messages %}
+							{% for message in messages %}
+							<div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								{{ message }}
+							</div>
+							{% endfor %}
+						{% endif %}
+
+						<form class="form" id="contact-form" method="post" action="{% url 'contact_form' %}">
+							{% csrf_token %}
+							<div class="messages"></div>
+
+							<div class="controls">
+
+								<div class="col-sm-6">
+									<div class="form-group">
+	                                    <input id="form_name" type="text" name="name" placeholder="Name *" required="required">
+	                                    <div class="help-block with-errors"></div>
+	                                </div>
+								</div>
+
+								<div class="col-sm-6">
+									<div class="form-group">
+	                                    <input id="form_email" type="email" name="email" placeholder="Email *" required="required">
+	                                    <div class="help-block with-errors"></div>
+	                                </div>
+								</div>
+
+								<div class="col-sm-12">
+									<div class="form-group">
+	                                    <input id="form_subject" type="text" name="subject" placeholder="Subject">
+	                                    <div class="help-block with-errors"></div>
+	                                </div>
+								</div>
+
+								<div class="col-sm-12">
+									<div class="form-group">
+	                                    <textarea id="form_message" name="message" placeholder="Message *" rows="4" required="required"></textarea>
+	                                    <div class="help-block with-errors"></div>
+	                                </div>
+								</div>
+
+								<div class="col-sm-12">
+									<input type="submit" class="button" value="Send Message">
+								</div>
+								<div class="clear-fix"></div>
+							</div>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--====== End Contact ======-->
+		
+		<!--====== Footer ======-->
+		<footer class="footer text-center">
+
+			<div class="social-icon">
+				{% if profile %}
+					{% if profile.facebook_url %}
+					<a href="{{ profile.facebook_url }}">
+						<span><i class="fa fa-facebook" aria-hidden="true"></i></span>
+					</a>
+					{% endif %}
+					{% if profile.twitter_url %}
+					<a href="{{ profile.twitter_url }}">
+						<span><i class="fa fa-twitter" aria-hidden="true"></i></span>
+					</a>
+					{% endif %}
+					{% if profile.youtube_url %}
+					<a href="{{ profile.youtube_url }}">
+						<span><i class="fa fa-youtube" aria-hidden="true"></i></span>
+					</a>
+					{% endif %}
+					{% if profile.linkedin_url %}
+					<a href="{{ profile.linkedin_url }}">
+						<span><i class="fa fa-linkedin" aria-hidden="true"></i></span>
+					</a>
+					{% endif %}
+					{% if profile.github_url %}
+					<a href="{{ profile.github_url }}">
+						<span><i class="fa fa-github" aria-hidden="true"></i></span>
+					</a>
+					{% endif %}
+				{% endif %}
+			</div>
+		</footer>
+		<!--====== End Footer ======-->
+
+		<!--====== js ======-->
+
+		<!-- jQuery -->
+		<script src="{% static 'js/jquery-3.0.0.min.js' %}"></script>
+		<script src="{% static 'js/jquery-migrate-3.0.0.min.js' %}"></script>
+
+	  	<!-- bootstrap -->
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+		<!-- singlePageNav -->
+		<script src="{% static 'js/jquery.singlePageNav.min.js' %}"></script>
+
+		<!-- owl carousel -->
+		<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+
+		<!-- stellar js -->
+		<script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+
+		<!-- jquery.magnific-popup.min js -->
+      	<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+
+      	<!-- typed js -->
+      	<script src="{% static 'js/typed.js' %}"></script>
+
+      	<!-- isotope.pkgd.min js -->
+      	<script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+
+      	<!-- particles.min js -->
+      	<script src="{% static 'js/particles.min.js' %}"></script>
+
+      	<!-- app js -->
+      	<script src="{% static 'js/app.js' %}"></script>
+      	
+      	<!-- custom js -->
+      	<script src="{% static 'js/custom.js' %}"></script>
+
+	</body>
+</html>
