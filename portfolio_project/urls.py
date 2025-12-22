@@ -24,7 +24,10 @@ urlpatterns = [
     path('', include('portfolio.urls')),
 ]
 
-# Serve media files in development
+# Always serve user-uploaded media through Django (small site / Railway)
+# Note: For heavy traffic, switch to cloud storage or a CDN.
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# Serve collected static files via Django only in development (prod uses WhiteNoise)
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
