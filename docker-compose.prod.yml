@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  web:
+    image: your_django_image:latest  # Replace with your actual Django image
+    build:
+      context: .
+      dockerfile: Dockerfile  # Ensure you have a Dockerfile for your Django app
+    command: gunicorn portfolio_project.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - static_volume:/app/static
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+    networks:
+      - app-network
+    configuration:
+      volumes:
+        - ./nginx.conf:/etc/nginx/conf.d/default.conf  # Create this file for Nginx config
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: your_db_name  # Replace with your database name
+      POSTGRES_USER: your_db_user  # Replace with your database user
+      POSTGRES_PASSWORD: your_db_password  # Replace with your database password
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+volumes:
+  static_volume:
+  db_data:
+
+networks:
+  app-network:
