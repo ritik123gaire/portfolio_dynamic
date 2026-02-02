@@ -28,35 +28,20 @@ SECRET_KEY = config('DJANGO_SECRET_KEY', default='django-insecure-tkj%i^k*ffacon
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-# ALLOWED_HOSTS - support Railway domains automatically
+# ALLOWED_HOSTS (comma-separated)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=Csv())
 
-# Add Railway domains if RAILWAY_ENVIRONMENT is set
-if os.environ.get('RAILWAY_PUBLIC_DOMAIN'):
-    ALLOWED_HOSTS.append(os.environ.get('RAILWAY_PUBLIC_DOMAIN'))
-if os.environ.get('RAILWAY_STATIC_URL'):
-    ALLOWED_HOSTS.append(os.environ.get('RAILWAY_STATIC_URL').replace('https://', '').replace('http://', ''))
-
-# Always allow Railway domains
-ALLOWED_HOSTS.extend([
-    'web-production-3e984.up.railway.app',
-    'ritikgaire.com.np',
-    'www.ritikgaire.com.np'
-])
-
-# Railway proxy configuration - MUST be before security settings
-# Railway terminates SSL at the proxy, so we trust the X-Forwarded-Proto header
+# Proxy configuration (when behind Nginx/Load Balancer)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_HOST = True
 
-# Never redirect to HTTPS - Railway handles this at proxy level
-SECURE_SSL_REDIRECT = False
+# HTTPS redirect (enable in production)
+SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=False, cast=bool)
 
 # CSRF trusted origins (must include scheme)
-# Allows posting from your domain and Railway subdomains
 CSRF_TRUSTED_ORIGINS = config(
     'CSRF_TRUSTED_ORIGINS',
-    default='https://ritikgaire.com.np,https://www.ritikgaire.com.np,https://*.railway.app,https://*.up.railway.app',
+    default='https://ritikgaire.com.np,https://www.ritikgaire.com.np',
     cast=Csv()
 )
 
@@ -113,6 +98,7 @@ DATABASES = {
         default=f'sqlite:///{BASE_DIR / "db.sqlite3"}',
         conn_max_age=600,
         conn_health_checks=True,
+        ssl_require=config('DB_SSL_REQUIRE', default=False, cast=bool),
     )
 }
 
