@@ -44,7 +44,7 @@ $(function (){
 
     // typejs
     $('header .caption h2').typed({
-        strings: ["A WEB DEVELOPER","A COMPUTER STUDENT"],
+        strings: ["CS STUDENT","FOCUSING AI ML"],
         loop: true,
         startDelay: 1000,
         backDelay: 2000
