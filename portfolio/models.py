@@ -108,10 +108,10 @@ class Service(models.Model):
 class Project(models.Model):
     """Portfolio projects"""
     CATEGORY_CHOICES = [
-        ('ecommerce', 'E-Commerce'),
-        ('blockchain', 'Blockchain'),
         ('data_science', 'Data Science'),
-        ('ui', 'UI'),
+        ('machine_learning', 'Machine Learning'),
+        ('web', 'Web Development'),
+        ('ai', 'AI/LLM'),
     ]
     
     title = models.CharField(max_length=200)

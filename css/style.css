@@ -115,7 +115,7 @@ a, a:hover, a:focus{
 .navbar-default .navbar-nav>li{
 	font-size: 16px;
 	margin: 30px 20px 0;
-	padding: 5 10px;
+	padding: 5px 10px;
 	font-weight: 400;
 	background: none;
 	cursor: pointer;
@@ -350,11 +350,15 @@ a, a:hover, a:focus{
 
 .clients{
 	background-blend-mode: overlay;
-	background: rgba(0,0,0,.8);
+	background: rgba(0,0,0,.6);
 	background-image: url(../img/client-bg.jpg);
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
+}
+
+.clients .tit{
+	color: #fff;
 }
 
 .clients .client-say{
@@ -673,6 +677,19 @@ a, a:hover, a:focus{
 
 .particle .button-scroll{
 	bottom: 5vh;
+}
+
+/* Override scroll styles for the Hire section button */
+.hire .button-scroll{
+	position: static;
+	width: auto;
+	height: auto;
+	border: none;
+	display: inline-block;
+}
+
+.hire .button-scroll button{
+	margin: 0;
 }
 
 #particles-js{

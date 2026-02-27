@@ -17,7 +17,7 @@ class Command(BaseCommand):
             id=1,
             defaults={
                 'name': 'Ritik Gaire',
-                'tagline': "ML Researcher | Backend Engineer | Data Science",
+                'tagline': "RITIK GAIRE",
                 'about_text': """Graduate Machine Learning Researcher and Backend Engineer with expertise in predictive modeling, statistical analysis, and computer vision. Co-authored a peer-reviewed paper on algorithmic bias in AI systems. Skilled in building ML pipelines, feature engineering, model evaluation, and deploying scalable data systems.
 
 Location: Flint, MI
@@ -185,7 +185,7 @@ Technologies: Python, Scikit-learn, Pandas, OpenCV, YOLOv8""",
             },
             {
                 'title': 'Multi-Agent Research Automation System',
-                'category': 'data_science',
+                'category': 'machine_learning',
                 'description': """Architected 5-agent workflows automating 10 research task types across 8–12 steps, cutting manual research time by 50%. Executed 4 human-in-the-loop checkpoints decreasing hallucinations by 40% and factual errors by 45%. Lowered LLM token usage by 30% through prompt tuning, caching, and batching.
 
 Technologies: Python, LangGraph, LLMs, GPT-4o""",

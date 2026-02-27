@@ -81,8 +81,7 @@
 		      <ul class="nav navbar-nav navbar-right">
 		        <li><a href="#home" class="active">Home</a></li>
 		        <li><a href="#about">About</a></li>
-		        <li><a href="#services">Skills</a></li>
-		        <li><a href="#clients">Blogs</a></li>
+	        <li><a href="#services">Services</a></li>
 		        <li><a href="#portfolio">Projects</a></li>
 		        <li><a href="#contact">Contact</a></li>
 		      </ul>
@@ -287,11 +286,7 @@
 					<!-- services items -->
 					<div class="services-items">
 						{% for service in services %}
-							{% if forloop.counter0|divisibleby:3 and not forloop.first %}
-					</div>
-					<div class="services-items">
-							{% endif %}
-						<div class="col-md-4 {% if forloop.counter0|divisibleby:3 != 1 %}bord{% endif %}">
+						<div class="col-md-4">
 							<div class="item">
 								<span class="{{ service.icon_class }}"></span>
 								<h5>{{ service.title }}</h5>
@@ -300,6 +295,10 @@
 								{% endif %}
 							</div>
 						</div>
+						{% if forloop.counter|divisibleby:3 and not forloop.last %}
+					</div>
+					<div class="services-items" style="margin-top: 30px;">
+						{% endif %}
 						{% endfor %}
 					</div>
 
@@ -308,21 +307,25 @@
 		</section>
 		<!--====== End Services ======-->
 
-		<!--====== Clients ======-->
-		<section id="clients" class="clients mb-50">
+		<!--====== Publications ======-->
+		<section id="publications" class="clients mb-50">
 			<div class="container">
+				<!-- section header -->
+				<div class="text-center mb-50">
+					<h4 class="tit tit-center">PUBLICATIONS & RESEARCH</h4>
+				</div>
 				<div class="row">
 
-					<!-- clients carousel -->
+					<!-- publications carousel -->
 					<div class="col-md-10 col-md-offset-1">
 						<div class="client-say text-center">
 							<div class="owl-carousel owl-theme">
 
 								{% for blog in blog_posts %}
-								<!-- client item -->
+								<!-- publication item -->
 								<div class="client-item text-center">
 										
-									<span class="icon-quote mb-50"></span><br>
+									<span class="icon-document mb-50"></span><br>
 
 									<h5 class="mb-30">{{ blog.title }}</h5>
 
@@ -331,16 +334,16 @@
 									<h6>___ {{ blog.author }}{% if blog.company %}, {{ blog.company }}{% endif %} ___</h6>
 								</div>
 								{% empty %}
-								<!-- client item -->
+								<!-- publication item -->
 								<div class="client-item text-center">
 										
-									<span class="icon-quote mb-50"></span><br>
+									<span class="icon-document mb-50"></span><br>
 
-									<h5 class="mb-30">Add Blog Posts</h5>
+									<h5 class="mb-30">No Publications Yet</h5>
 
-									<p class="mb-20">Use the admin panel to add blog posts that will appear here.</p>
+									<p class="mb-20">Research publications will appear here.</p>
 
-									<h6>___ Admin ___</h6>
+									<h6>___ Coming Soon ___</h6>
 								</div>
 								{% endfor %}
 
@@ -350,7 +353,7 @@
 				</div>
 			</div>
 		</section>
-		<!--====== End Clients ======-->
+		<!--====== End Publications ======-->
 
 		<!--====== Portfolio ======-->
 		<section id="portfolio" class="portfolio section-padding">
@@ -365,10 +368,9 @@
 					<!-- filter links -->
 					<div class="filtering text-center mb-50">
 						<span data-filter='*' class="active">All</span>
-						<span data-filter='.ecommerce'>E-Commerce</span>
-						<span data-filter='.blockchain'>Blockchain</span>
 						<span data-filter='.data_science'>Data Science</span>
-						<span data-filter='.ui'>UI</span>
+						<span data-filter='.machine_learning'>Machine Learning</span>
+						<span data-filter='.web'>Web Development</span>
 					</div>
 
 					<!-- gallery -->
@@ -420,7 +422,7 @@
 		<section class="hire section-padding text-center">
 			<div class="container">
 				<h3>Start Work With Me</h3>
-				<button>Hire Me</button>
+				<a href="#contact" class="button-scroll"><button>Hire Me</button></a>
 			</div>
 		</section>
 		<!--====== End Hire ======-->
@@ -499,7 +501,11 @@
 		
 		<!--====== Footer ======-->
 		<footer class="footer text-center">
-
+			<div class="container">
+				{% if profile and profile.email %}
+				<p class="mb-20"><i class="fa fa-envelope"></i> {{ profile.email }}</p>
+				{% endif %}
+			</div>
 			<div class="social-icon">
 				{% if profile %}
 					{% if profile.facebook_url %}
@@ -529,6 +535,9 @@
 					{% endif %}
 				{% endif %}
 			</div>
+			<p class="mt-20" style="color: #888; font-size: 14px;">
+				&copy; {% now "Y" %} {% if profile %}{{ profile.name }}{% else %}Portfolio{% endif %}. All Rights Reserved.
+			</p>
 		</footer>
 		<!--====== End Footer ======-->
 
